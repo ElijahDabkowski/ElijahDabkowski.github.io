@@ -104,7 +104,7 @@ class Treemap {
             .attr("height", 240)
 
         vis.summary.append("rect")
-            .attr("x", 125)
+            .attr("x", 110)
             .attr("y", 15)
             .attr("width", 1000)
             .attr("height", 165)
