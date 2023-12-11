@@ -1,60 +1,280 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Practice Work</title>
+	<meta charset="utf-8">
+	<title>CS171 Project</title>
+	<link rel="stylesheet" type="text/css" href="./css/fullview.css" />
+	<script  src="js/jquery-3.5.1.min.js"  crossorigin="anonymous"></script>
+	<script type="text/javascript" src="./js/fullview.js"></script>
+	<link rel="stylesheet" href="css/style.css">
 </head>
-<body style = "background-color: gainsboro">
 
-<div class = "row">
-    <h1 style = "text-align: center">Final Viz: Interactive Treemap!</h1>
-    <div class = "col" style = "text-align:center">
-        <p>
-            <select id="season" onchange="treemapchange()">
-                <option value=16 name="">Select a Year to Explore Further</option>
-                <option value=0 name="2004 Season">2004 Season</option>
-                <option value=1>2005 Season</option>
-                <option value=2>2006 Season</option>
-                <option value=3>2007 Season</option>
-                <option value=4>2008 Season</option>
-                <option value=5>2009 Season</option>
-                <option value=6>2010 Season</option>
-                <option value=7>2011 Season</option>
-                <option value=8>2012 Season</option>
-                <option value=9>2013 Season</option>
-                <option value=10>2014 Season</option>
-                <option value=11>2015 Season</option>
-                <option value=12>2016 Season</option>
-                <option value=13>2017 Season</option>
-                <option value=14>2018 Season</option>
-                <option value=15>2019 Season</option>
-            </select>
-            <select id = "pencount" onchange="treemapchange()">
-                <option value=8>Select a Penalty Count After Selecting a Year</option>
-                <option value=0>Less Than Two Penalties</option>
-                <option value=1>Between Three and Four Penalties</option>
-                <option value=2>Between Five and Six Penalties</option>
-                <option value=3>Between Seven and Eight Penalties</option>
-                <option value=4>Between Nine and Ten Penalties</option>
-                <option value=5>Between Eleven and Twelve Penalties</option>
-                <option value=6>Between Thirteen and Fourteen Penalties</option>
-                <option value=7>Fifteen or More Penalties</option>
+<body>
 
-            </select>
-        </p>
-    </div>
+<div id="fullview">
+
+	<!-- Slide 1 -->
+	<div class="section" id="title">
+		<br>
+		<h1>The Evolution of the NFL in the 21st Century</h1>
+		<br>
+	</div>
+
+	<!-- Slide 2 -->
+	<div class="section container" id="intro">
+		<div class="row">
+			<div class="column">
+				<p id="desc-text">With approximately 17.1 million people tuning in each week to watch the NFL and over
+				100 million sitting down last February for the Super Bowl, the NFL is America's most popular sport!
+				With so many different positions a player can fill and so many statistics that can be tracked, there is no
+				shortage of data in the world of American football. In this interactive visualization story, you will see a
+				breakdown of various team-level and individual player statistics, but the main focus will be <b>penalty flags</b>.
+				Penalties can have a huge effect - sometimes costing a team the entire game or possibly even the whole
+				season. And in recent years, new rules aimed at improving player safety have increased certain penalties'
+				frequency. How have these changes effected the game? ... keep scrolling to find out. But before getting into
+				the nitty-gritty of penalties, you can use the next page to explore overall trends in various NFL stats
+				from the last couple of decades. Have fun!</p>
+			</div>
+			<div class="column">
+				<h1>PENALTY FLAGS</h1>
+				<p id="highlight-text">A penalty, or flag, is a sanction assessed against a team for a violation of the rules.</p>
+				<img src="img/penalty_flag.png" class="responsive" id="flag_img">
+			</div>
+		</div>
+	</div>
+
+	<!-- Slide 3 -->
+	<div class="section container" id="main-dashboard">
+		<br>
+		<h2>NFL Data Exploration Dashboard</h2>
+		<p class="selector">
+		<select id="positions" onchange="change()">
+			<option value="" disabled selected>SELECT A POSITION (Default - QB)</option>
+			<option value="Quarterbacks">Quarterbacks</option>
+			<option value="Runningbacks">Runningbacks</option>
+			<option value="Wide Receivers">Wide Receivers</option>
+		</select>
+		<select id="stats" onchange="change()">
+			<option value="" disabled selected>SELECT A STATISTIC (Default - Pass Completions) </option>
+		</select>
+		</p>
+	</div>
+
+	<!-- Slide 4 -->
+	<div class="section container" id="intermediate-text">
+		<h1>Types of Penalties</h1>
+		<p id="penalty-text">These are some examples of penalties that different rule changes over NFL history may have
+			effected. Click on the buttons to see some examples!</p>
+		<div class="row">
+			<div class="column3">
+				<div class="targeting hide_form">
+					<button class="close" id="close1" style="float: right;">Close</button>
+					<form>
+						<video width="800vw" height="400vw" controls>
+							<source src="img/vid/targeting_penalty.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</form>
+				</div>
+				<button id="show1">Targeting</button>
+				<script>
+					$('#show1').on('click', function () {
+						$('.targeting').show();
+						$(this).hide();})
+					$('#close1').on('click', function () {
+						$('.targeting').hide();
+						$('#show1').show();})
+				</script>
+			</div>
+			<div class="column3">
+				<div class="rough-pass hide_form">
+					<button class="close" id="close2" style="float: right;">Close</button>
+					<form>
+						<video width="800vw" height="400vw" controls>
+							<source src="img/vid/rough_passer.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</form>
+				</div>
+				<button id="show2">Roughing the Passer</button>
+				<script>
+					$('#show2').on('click', function () {
+						$('.rough-pass').show();
+						$(this).hide();})
+					$('#close2').on('click', function () {
+						$('.rough-pass').hide();
+						$('#show2').show();})
+				</script>
+			</div>
+
+			<div class="column3">
+				<div class="rough-kick hide_form">
+					<button class="close" id="close3" style="float: right;">Close</button>
+					<form>
+						<video width="800vw" height="400vw" controls>
+							<source src="img/vid/rough_kicker.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</form>
+				</div>
+				<button id="show3">Roughing the Kicker</button>
+				<script>
+					$('#show3').on('click', function () {
+						$('.rough-kick').show();
+						$(this).hide();})
+					$('#close3').on('click', function () {
+						$('.rough-kick').hide();
+						$('#show3').show();})
+				</script>
+			</div>
+		</div>
+		<div class="row">
+			<div class="column3">
+				<div class="illegal_contact hide_form">
+					<button class="close" id="close4" style="float: right;">Close</button>
+					<form class="bottom_row">
+						<video width="800vw" height="400vw" controls>
+							<source src="img/vid/pass_interference.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</form>
+				</div>
+				<button id="show4">Pass Interference</button>
+				<script>
+					$('#show4').on('click', function () {
+						$('.illegal_contact').show();
+						$(this).hide();})
+					$('#close4').on('click', function () {
+						$('.illegal_contact').hide();
+						$('#show4').show();})
+				</script>
+			</div>
+			<div class="column3">
+				<div class="illegal_block hide_form">
+					<button class="close" id="close5" style="float: right;">Close</button>
+					<form class="bottom_row">
+						<video width="800vw" height="400vw" controls>
+							<source src="img/vid/holding.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</form>
+				</div>
+				<button id="show5">Holding</button>
+				<script>
+					$('#show5').on('click', function () {
+						$('.illegal_block').show();
+						$(this).hide();})
+					$('#close5').on('click', function () {
+						$('.illegal_block').hide();
+						$('#show5').show();})
+				</script>
+			</div>
+			<div class="column3">
+				<div class="face_mask hide_form">
+					<button class="close" id="close6" style="float: right;">Close</button>
+					<form class="bottom_row">
+						<video width="800vw" height="400vw" controls>
+							<source src="img/vid/face_mask.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</form>
+				</div>
+				<button id="show6">Face Mask</button>
+				<script>
+					$('#show6').on('click', function () {
+						$('.face_mask').show();
+						$(this).hide();})
+					$('#close6').on('click', function () {
+						$('.face_mask').hide();
+						$('#show6').show();})
+				</script>
+			</div>
+		</div>
+	</div>
+
+	<!-- Slide 5 -->
+	<div class="section" id="penalty_visuals" style="text-align: center">
+		<h1 id="penalty_header">Changes Over Time</h1>
+		<p id="change-text">Notice the sharp increase in penalties during the 2011 season. New rule changes in that year regarding
+			"launching" and a more liberal redefining of a "defenseless player" could be some such reasons for this spike
+			(see Rule Changes at <a href="https://en.wikipedia.org/wiki/2011_NFL_season#:~:text=First%2C%20kickoffs%20will%20be%20moved,reducing%20the%20speed%20of%20collisions.">
+				Wikipedia - NFL 2011</a>). This increase in 2011 was also accompanied by an increase in sacks and a
+			decrease in kickoff returns for touchdowns, but how much do penalties effect a game's outcome? See the next slide!</p>
+	</div>
+
+	<!-- Slide 6 -->
+	<div class="section">
+		<div class = "row">
+			<h1 id="tree_title">Interactive Treemap</h1>
+			<p id="tree-text">This is an interactive treemap that allows
+				you to adjust the NFL Season from 2004-2019 along with the penalty counts of different teams for different games!
+				Update the treemap with the buttons provided below, and the map will cascade downward, originally showing all
+				the sixteen seasons, followed by the eight different categories of penalty selection, and finally the number of wins/losses.
+				The size of each box indicates the number of available subsections for that datapoint. <b>Interesting Statistic:
+				Check out the number of games with 15 or more penalties in 2004 versus 2019!</b></p>
+			<div class = "col" style = "text-align:center">
+				<p>
+					<select id="season" onchange="treemapchange()">
+						<option value=16 name="">Select a Year to Explore Further</option>
+						<option value=0 name="2004 Season">2004 Season</option>
+						<option value=1>2005 Season</option>
+						<option value=2>2006 Season</option>
+						<option value=3>2007 Season</option>
+						<option value=4>2008 Season</option>
+						<option value=5>2009 Season</option>
+						<option value=6>2010 Season</option>
+						<option value=7>2011 Season</option>
+						<option value=8>2012 Season</option>
+						<option value=9>2013 Season</option>
+						<option value=10>2014 Season</option>
+						<option value=11>2015 Season</option>
+						<option value=12>2016 Season</option>
+						<option value=13>2017 Season</option>
+						<option value=14>2018 Season</option>
+						<option value=15>2019 Season</option>
+					</select>
+					<select id = "pencount" onchange="treemapchange()">
+						<option value=8>Select a Penalty Count After Selecting a Year</option>
+						<option value=0>Less Than Two Penalties</option>
+						<option value=1>Between Three and Four Penalties</option>
+						<option value=2>Between Five and Six Penalties</option>
+						<option value=3>Between Seven and Eight Penalties</option>
+						<option value=4>Between Nine and Ten Penalties</option>
+						<option value=5>Between Eleven and Twelve Penalties</option>
+						<option value=6>Between Thirteen and Fourteen Penalties</option>
+						<option value=7>Fifteen or More Penalties</option>
+					</select>
+				</p>
+			</div>
+		</div>
+		<div class = "row">
+			<div class = "col-6" id = "treemap">
+			</div>
+			<div class = "col-6" id = "wordbox">
+			</div>
+		</div>
+	</div>
+
+	<!-- Slide 7 -->
+	<div class="section">
+		<h1 id="line_1">Thank You!</h1>
+		<h1 id="line_2">We Hope You Enjoyed!</h1>
+	</div>
+
+	<!-- Slide 8 -->
+	<div class="section" id="authors">
+		<h1>Authors</h1>
+	</div>
+
 </div>
-<div class = "row">
-    <div class = "col-6" id = "treemap">
-    </div>
-    <div class = "col-6" id = "wordbox">
-    </div>
-</div>
+
 
 <!-- BOOTSTRAP -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
 
 <!-- d3 -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -65,9 +285,33 @@
 <script src="https://d3js.org/topojson.v2.min.js"></script>
 <script src="https://d3js.org/d3-geo.v1.min.js"></script>
 
-<script src="js/treemap.js"></script>
-<script src="js/main.js"></script>
 
+<!-- OWN JS -->
+<script src="js/main.js"></script>
+<script src="js/dashboard_main.js"></script>
+<script src="js/dashboard_hist.js"></script>
+<script src="js/dashboard_top3.js"></script>
+<script src="js/dashboard_donut.js"></script>
+<script src="js/penalties.js"></script>
+<script src="js/sacks_kickreturns.js"></script>
+<script src="js/treemap.js"></script>
+
+<!-- Script tag for filtering -->
+<script>
+	$(document).ready(function() {
+		$("#position").change(function() {
+			let val = $(this).val();
+			if (val === "Quarterbacks") {
+				$("#stat").html("<option value='test'>Pass Yards</option><option value='test2'>Completions</option><option value='test3'>Pass Touchdowns</option><option value='test4'>Interceptions</option>");
+			} else if (val === "Runningbacks") {
+				$("#stat").html("<option value='test'>Rush Yards</option><option value='test2'>Rush Touchdowns</option>");
+
+			} else if (val === "Wide Receivers") {
+				$("#stat").html("<option value='test'>Receptions</option><option value='test2'>Reception Yards</option><option value='test3'>Reception Yards After Carry</option><option value='test4'>1st Down Receptions</option>");
+			}
+		});
+	});
+</script>
 
 </body>
 </html>
