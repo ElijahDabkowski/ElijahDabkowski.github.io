@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice Work</title>
+</head>
+<body style = "background-color: gainsboro">
+
+<div class = "row">
+    <h1 style = "text-align: center">Final Viz: Interactive Treemap!</h1>
+    <div class = "col" style = "text-align:center">
+        <p>
+            <select id="season" onchange="treemapchange()">
+                <option value=16 name="">Select a Year to Explore Further</option>
+                <option value=0 name="2004 Season">2004 Season</option>
+                <option value=1>2005 Season</option>
+                <option value=2>2006 Season</option>
+                <option value=3>2007 Season</option>
+                <option value=4>2008 Season</option>
+                <option value=5>2009 Season</option>
+                <option value=6>2010 Season</option>
+                <option value=7>2011 Season</option>
+                <option value=8>2012 Season</option>
+                <option value=9>2013 Season</option>
+                <option value=10>2014 Season</option>
+                <option value=11>2015 Season</option>
+                <option value=12>2016 Season</option>
+                <option value=13>2017 Season</option>
+                <option value=14>2018 Season</option>
+                <option value=15>2019 Season</option>
+            </select>
+            <select id = "pencount" onchange="treemapchange()">
+                <option value=8>Select a Penalty Count After Selecting a Year</option>
+                <option value=0>Less Than Two Penalties</option>
+                <option value=1>Between Three and Four Penalties</option>
+                <option value=2>Between Five and Six Penalties</option>
+                <option value=3>Between Seven and Eight Penalties</option>
+                <option value=4>Between Nine and Ten Penalties</option>
+                <option value=5>Between Eleven and Twelve Penalties</option>
+                <option value=6>Between Thirteen and Fourteen Penalties</option>
+                <option value=7>Fifteen or More Penalties</option>
+
+            </select>
+        </p>
+    </div>
+</div>
+<div class = "row">
+    <div class = "col-6" id = "treemap">
+    </div>
+    <div class = "col-6" id = "wordbox">
+    </div>
+</div>
+
+<!-- BOOTSTRAP -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+<!-- d3 -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://d3js.org/d3-array.v2.min.js"></script>
+<script src="https://d3js.org/d3-geo.v2.min.js"></script>
+
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+<script src="https://d3js.org/d3-geo.v1.min.js"></script>
+
+<script src="js/treemap.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+</html>
